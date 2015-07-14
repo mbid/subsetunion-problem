@@ -28,3 +28,18 @@ For $n = 7$, the family
   {0, 1, 5}
 
 proofs $\alpha_7 \geq 9$. The program runs too long to proof $\alpha_7 = 9$. 
+
+For $n = 8$, the family
+
+  {7}
+  {5, 6}
+  {4, 6}
+  {3, 6}
+  {2, 5}
+  {1, 4}
+  {1, 2, 3}
+  {0, 3}
+  {0, 2, 4}
+  {0, 1, 5}
+
+proofs $\alpha_8 \geq 10$.
