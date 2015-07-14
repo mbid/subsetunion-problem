@@ -13,7 +13,7 @@ For $n = 6$, the family
   {0, 2, 5}
   {0, 1}
 
-proofs $\alpha_6 \geq 7$. The program doesn't find a counterexample for $alpha_6 = 7$.
+proofs $\alpha_6 \geq 7$. There is no example proofing $\alpha_6 > 7$, therefore $\alpha_6 = 7$.
 
 For $n = 7$, the family
 
@@ -27,4 +27,4 @@ For $n = 7$, the family
   {0, 2, 4}
   {0, 1, 5}
 
-proofs $\alpha_7 \ŋeq 9$. The program runs too long to proof $\alpha_7 = 9$. 
+proofs $\alpha_7 \geq 9$. The program runs too long to proof $\alpha_7 = 9$. 
