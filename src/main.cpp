@@ -41,7 +41,7 @@ bool last_subset_causes_counterexample
     return false;
 }
 
-template<size_t ProblemSize, size_t CurrentIndex = 0>
+template<size_t N, size_t K, size_t CurrentIndex = 0>
 struct bruteforce_helper 
 {
     template<class AllSubsetsIterator>
@@ -49,7 +49,7 @@ struct bruteforce_helper
     (
         AllSubsetsIterator all_begin,
         AllSubsetsIterator all_end,
-        array<subset_t, ProblemSize>& currently_chosen_subsets
+        array<subset_t, K>& currently_chosen_subsets
     )
     {
         for(auto subset_it = all_begin; subset_it != all_end; ++subset_it)
@@ -57,22 +57,22 @@ struct bruteforce_helper
             currently_chosen_subsets[CurrentIndex] = *subset_it;
 
             if(!last_subset_causes_counterexample(currently_chosen_subsets.begin(), currently_chosen_subsets.begin() + CurrentIndex + 1))
-                bruteforce_helper<ProblemSize, CurrentIndex + 1>::doit(subset_it, all_end, currently_chosen_subsets);
+                bruteforce_helper<N, K, CurrentIndex + 1>::doit(subset_it + 1, all_end, currently_chosen_subsets);
         }
     }
 };
 
 
 
-template<size_t ProblemSize>
-struct bruteforce_helper<ProblemSize, ProblemSize>
+template<size_t N, size_t K>
+struct bruteforce_helper<N, K, K>
 {
     template<class AllSubsetsIterator>
     static void doit
     (
         AllSubsetsIterator,
         AllSubsetsIterator,
-        array<subset_t, ProblemSize>& currently_chosen_subsets
+        array<subset_t, K>& currently_chosen_subsets
     )
     {
         cout << "counterexample: \n";
@@ -95,28 +95,32 @@ struct bruteforce_helper<ProblemSize, ProblemSize>
     }
 };
 
-template<size_t ProblemSize>
+template<size_t N, size_t K>
 void bruteforce()
 {
-    static_assert(ProblemSize >= 1, "");
+    cout << "brute-forcing N=" << N<< " " << "K=" << K << endl;
 
-    cout << "brute-forcing problem size " << ProblemSize << "...\n";
-
-    relevant_subsets_t<ProblemSize - 1> subsets = relevant_subsets<ProblemSize - 1>();
-    array<subset_t, ProblemSize> currently_chosen_subsets;
+    relevant_subsets_t<N> subsets = relevant_subsets<N>();
+    array<subset_t, K> currently_chosen_subsets;
     currently_chosen_subsets.fill(0);
 
-    bruteforce_helper<ProblemSize>::doit(subsets.begin(), subsets.end(), currently_chosen_subsets);
+    bruteforce_helper<N, K>::doit(subsets.begin(), subsets.end(), currently_chosen_subsets);
 }
 
 int main()
 {
-    //bruteforce<2>();
-    //bruteforce<3>();
-    //bruteforce<4>();
-    //bruteforce<5>();
-    //bruteforce<6>();
-    //bruteforce<7>();
-    bruteforce<8>();
+    //volatile size_t i = 0;
+    //for(size_t j = 0; j != 100000000000; ++j)
+    //    ++i;
+    
+    //bruteforce<2, 3>();
+    //bruteforce<4, 5>();
+    //bruteforce<5, 6>();
+    //bruteforce<6, 7>();
+    //bruteforce<6, 8>();
+    //bruteforce<7, 10>();
+    //bruteforce<7, 9>();
+    //bruteforce<7, 10>();
+    bruteforce<9, 12>();
 }
 
