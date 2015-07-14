@@ -1,7 +1,5 @@
 For arbitrary n, it is easy to see that
-\begin{equation*}
 	{1}, {2}, ..., {n}
-\end{equation*}
 is an example proofing $\alpha_n \geq n$.
 For $n = 1, \dots, 5$, the program doesn't find a counterexample $M_1, \dots, M_{n+1} \subseteq \{0, \dots, n -1\}$ for $\alpha_n > n$, therefore $\alpha_n = 5$ (modulo bugs :) ).
 
